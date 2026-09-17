@@ -5,6 +5,10 @@
 
 ---
 
+https://github.com/user-attachments/assets/dca1c8b7-7657-4a8c-bc6e-0f0744828219
+
+---
+
 ## 🚀 Overview
 
 **Muapi-GTM** is a self-hosted B2B Go-To-Market (GTM) data orchestration platform modeled after modern visual data engines like **Clay**, engineered from the ground up for high-throughput account qualification, decision-maker discovery, buying signal tracking, and multimodal outreach.
