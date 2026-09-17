@@ -180,3 +180,42 @@ class Automation(Base):
     runs_count = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class Audience(Base):
+    __tablename__ = "audiences"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    name = Column(String(255), nullable=False)
+    description = Column(Text, nullable=True)
+    filters = Column(JSON, default=list)        # list of criteria e.g. [{"field": "industry", "op": "contains", "val": "Fintech"}]
+    destinations = Column(JSON, default=list)   # webhooks or export destinations
+    member_count = Column(Integer, default=0)
+    refresh_interval_hours = Column(Integer, default=24)
+    refreshed_at = Column(DateTime, nullable=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class AccountWatch(Base):
+    __tablename__ = "account_watches"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    domain = Column(String(255), index=True, nullable=False)
+    company_name = Column(String(255), nullable=True)
+    watch_types = Column(JSON, default=lambda: ["news", "funding", "hiring"])
+    check_interval_hours = Column(Integer, default=12)
+    last_checked_at = Column(DateTime, nullable=True)
+    signals_detected_count = Column(Integer, default=0)
+    is_active = Column(Boolean, default=True)
+    created_at = Column(DateTime, default=datetime.utcnow)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
+
+class ChatMessage(Base):
+    __tablename__ = "chat_messages"
+
+    id = Column(String(36), primary_key=True, default=generate_uuid)
+    session_id = Column(String(100), default="default", index=True)
+    role = Column(String(20), nullable=False)   # user, assistant, system
+    content = Column(Text, nullable=False)
+    metadata_json = Column(JSON, default=dict)
+    created_at = Column(DateTime, default=datetime.utcnow)
+

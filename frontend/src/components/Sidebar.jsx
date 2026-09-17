@@ -9,6 +9,10 @@ import {
   Sparkles,
   Wifi,
   ExternalLink,
+  MessageSquare,
+  ListFilter,
+  Radar,
+  BarChart3,
 } from 'lucide-react';
 import { api } from '../api/client';
 
@@ -28,11 +32,15 @@ export default function Sidebar({ currentTab, setCurrentTab }) {
   }, []);
 
   const navItems = [
+    { id: 'chat', label: 'AI Copilot', icon: <MessageSquare size={16} /> },
     { id: 'workbooks', label: 'Workbooks', icon: <Table2 size={16} /> },
     { id: 'leads', label: 'Global Leads', icon: <Users size={16} /> },
+    { id: 'audiences', label: 'Audiences', icon: <ListFilter size={16} /> },
+    { id: 'watches', label: 'Account Watches', icon: <Radar size={16} /> },
     { id: 'signals', label: 'Buying Signals', icon: <Activity size={16} /> },
     { id: 'outreach', label: 'Outreach Studio', icon: <Send size={16} /> },
     { id: 'automations', label: 'Automations', icon: <Zap size={16} /> },
+    { id: 'analytics', label: 'Analytics', icon: <BarChart3 size={16} /> },
     { id: 'settings', label: 'API & Settings', icon: <Settings size={16} /> },
   ];
 

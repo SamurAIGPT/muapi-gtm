@@ -86,6 +86,31 @@ export const api = {
   // ── Multimodal Outreach ──
   generateOutreach: (data) => fetchJson('/api/outreach/generate', { method: 'POST', body: JSON.stringify(data) }),
 
+  // ── Audiences ──
+  getAudiences: () => fetchJson('/api/audiences'),
+  createAudience: (data) => fetchJson('/api/audiences', { method: 'POST', body: JSON.stringify(data) }),
+  getAudience: (id) => fetchJson(`/api/audiences/${id}`),
+  refreshAudience: (id) => fetchJson(`/api/audiences/${id}/refresh`, { method: 'POST' }),
+  deleteAudience: (id) => fetchJson(`/api/audiences/${id}`, { method: 'DELETE' }),
+
+  // ── Watches ──
+  getWatches: () => fetchJson('/api/watches'),
+  createWatch: (data) => fetchJson('/api/watches', { method: 'POST', body: JSON.stringify(data) }),
+  scanWatch: (id) => fetchJson(`/api/watches/${id}/scan`, { method: 'POST' }),
+  deleteWatch: (id) => fetchJson(`/api/watches/${id}`, { method: 'DELETE' }),
+
+  // ── Analytics ──
+  getAnalyticsOverview: () => fetchJson('/api/analytics/overview'),
+  getAnalyticsPipeline: () => fetchJson('/api/analytics/pipeline'),
+
+  // ── AI Copilot Chat ──
+  getChatHistory: (sessionId = 'default') => fetchJson(`/api/chat/history?session_id=${encodeURIComponent(sessionId)}`),
+  sendChatMessage: (message, sessionId = 'default') =>
+    fetchJson('/api/chat/send', {
+      method: 'POST',
+      body: JSON.stringify({ message, session_id: sessionId }),
+    }),
+
   // ── Settings ──
   getSettings: () => fetchJson('/api/settings'),
   updateSettings: (data) => fetchJson('/api/settings', { method: 'POST', body: JSON.stringify(data) }),

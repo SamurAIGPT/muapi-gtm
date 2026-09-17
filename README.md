@@ -92,41 +92,50 @@ In traditional GTM stacks, users must sign up for over 10 separate services with
 
 ---
 
-## ✨ Key Features
+## ✨ Full GTM Feature Suite
 
-1. **Clay-Style Virtualized Spreadsheet Grid**:
-   - High-performance scrolling for 1,000+ rows using `@tanstack/react-virtual`.
-   - In-line double-click editing, drag/reorder, status pills, and column menus.
+1. **AI GTM Copilot (Powered by `gpt-5-mini`)**:
+   - Conversational account research assistant with workspace context awareness.
+   - Generates customized SDR sequences, qualification workflows, and ICP definitions on demand.
+
+2. **Clay-Style Virtualized Spreadsheet Grid**:
+   - High-performance 60fps scrolling for 1,000+ rows via `@tanstack/react-virtual`.
+   - In-line double-click editing, drag/reorder, status pills, and column action menus.
    - Provenance drawer displaying exact JSON responses, latency (ms), and cited web URLs.
    - Built-in CSV import with automatic column header detection and one-click CSV export.
 
-2. **Custom Minimalist UI with Inter Typography**:
-   - Executive dark design system with clean 1px borders, smooth micro-interactions, and zero clutter.
-   - **100% Custom Dropdowns**: Dedicated `CustomSelect` component replaces all native `<select>` tags for a cohesive feel.
+3. **Dynamic Audiences & Activation**:
+   - Multi-criteria segment builder filtering accounts by industry, tech stack, and intent triggers.
+   - Scheduled refresh intervals with durable entry/exit event counts.
+   - Outbound activation to webhooks, Smartlead, HubSpot, and CSV pipelines.
 
-3. **Smart Multi-Stage Waterfall Engine**:
-   - Cascades lookups: Free keyless checks ➔ Unified Muapi routed pipeline ➔ Optional BYOK fallback (Apollo, Hunter).
+4. **Continuous Account Watches & Intent Radar**:
+   - Continuously monitors target domains for expansion news, funding rounds, and hiring surges.
+   - One-click on-demand scan executing live searches across Muapi endpoints.
+
+5. **Real-Time Buying Signals Timeline**:
+   - Tracks hiring spikes, funding events, and technographic adoption shifts across all pipeline accounts.
+   - Unread, actioned, and archived status tracking.
+
+6. **Multimodal Outreach Studio**:
+   - Generates high-converting 1-to-1 cold emails and LinkedIn notes under 90 words.
+   - Synthesizes personalized 15-second audio voice notes (*"Hey Sarah, noticed you're scaling RevOps at Stripe..."*) via Muapi TTS (`elevenlabs-tts-turbo-2-5`) with inline player.
+   - Generates branded dynamic visual previews and SaaS dashboard mockups via Flux Schnell (`flux-schnell-image`).
+
+7. **Smart Multi-Stage Waterfall Engine**:
+   - Cascades lookups across free keyless checks, unified Muapi routed pipeline, and optional BYOK fallback.
    - Halts at first verified match to minimize credit consumption.
 
-4. **Web Research Agent (Powered by `/research-web-answer`)**:
-   - Research columns ask open-ended questions per row (e.g. *"What is {Company}'s pricing tier and target customer?"*).
-   - Generates cited answers with clickable source badges and reasoning traces.
+8. **Event-Driven Automations**:
+   - Trigger ➔ Filter ➔ Action workflow rules with durable retries.
+   - *Example*: When hiring surge is detected on target domain ➔ Automatically rank VP decision-makers ➔ Generate personalized intro copy.
 
-5. **Multimodal Outreach Studio**:
-   - Generates high-converting 1-to-1 cold emails and LinkedIn notes under 90 words.
-   - Synthesizes personalized 15-second audio voice notes (*"Hey Sarah, noticed you're scaling RevOps at Stripe..."*) playable directly in the browser.
-   - Generates branded visual previews containing prospect company branding.
+9. **Pipeline Intelligence & Cost Analytics**:
+   - Executive telemetry tracking total target accounts, deliverability yield (%), intent signals, and vendor savings ($).
+   - Visual ICP qualification tier distribution and detected technology market share.
 
-6. **Event-Driven Automations**:
-   - Trigger ➔ Filter ➔ Action workflow rules.
-   - *Example*: When a hiring surge is detected on a target domain ➔ Automatically rank VP decision-makers ➔ Generate personalized intro copy.
-
-7. **Native Model Context Protocol (MCP) Server**:
-   - Built-in stdio MCP server (`backend/mcp/server.py`) allowing AI agents in **Cursor**, **Claude Code**, and **Windsurf** to inspect workbooks and execute enrichments natively.
-
-8. **Zero-Config Portability & Sandbox Mode**:
-   - Zero external services required to start: SQLite with WAL mode creates local databases automatically.
-   - If no API key is entered, an intelligent deterministic sandbox mode provides realistic B2B test data so workflows never stall.
+10. **Native Model Context Protocol (MCP) Server**:
+    - Built-in stdio MCP server (`backend/mcp/server.py`) allowing AI agents in **Cursor**, **Claude Code**, and **Windsurf** to inspect workbooks and execute enrichments autonomously.
 
 ---
 

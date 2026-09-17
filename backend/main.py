@@ -7,7 +7,18 @@ from fastapi.staticfiles import StaticFiles
 
 from backend.core.config import settings, OUTPUTS_DIR
 from backend.core.db import init_db
-from backend.routers import workbooks, leads, signals, automations, settings as settings_router, outreach
+from backend.routers import (
+    workbooks,
+    leads,
+    signals,
+    automations,
+    settings as settings_router,
+    outreach,
+    audiences,
+    watches,
+    analytics,
+    chat
+)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -37,6 +48,10 @@ app.include_router(leads.router)
 app.include_router(signals.router)
 app.include_router(automations.router)
 app.include_router(outreach.router)
+app.include_router(audiences.router)
+app.include_router(watches.router)
+app.include_router(analytics.router)
+app.include_router(chat.router)
 app.include_router(settings_router.router)
 
 # Mount outputs static directory

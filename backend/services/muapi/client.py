@@ -251,9 +251,11 @@ class MuapiClient:
 
     # ── 13. Live LLM Transforms & ICP Scoring ─────────────────────────────────
     async def chat_completion(self, prompt: str, system_prompt: Optional[str] = None, model: str = "gpt-5-mini") -> str:
-        """Call real live LLM endpoint (gpt-5-mini) on Muapi."""
-        full_prompt = f"{system_prompt}\n\n{prompt}" if system_prompt else prompt
-        res = await self._execute_or_poll("gpt-5-mini", {"prompt": full_prompt})
+        """Call real live LLM endpoint (gpt-5-mini) on Muapi with dedicated system_prompt parameter."""
+        payload = {"prompt": prompt}
+        if system_prompt:
+            payload["system_prompt"] = system_prompt
+        res = await self._execute_or_poll("gpt-5-mini", payload)
         if isinstance(res, str):
             return res.strip()
         if isinstance(res, dict):
