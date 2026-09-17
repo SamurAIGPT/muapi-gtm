@@ -99,9 +99,27 @@ export default function EditorPage({ workbookId, onBack }) {
   const handleAddRow = async () => {
     try {
       const newRow = await api.addRow(workbookId, {});
-      setRows([...rows, newRow]);
+      setRows((prev) => [...prev, newRow]);
     } catch (err) {
-      alert(`Error adding row: ${err.message}`);
+      alert(`Failed to add row: ${err.message}`);
+    }
+  };
+
+  const handleAddSampleLeads = async () => {
+    try {
+      const samples = [
+        { col_domain: 'stripe.com', col_company: 'Stripe' },
+        { col_domain: 'datadog.com', col_company: 'Datadog' },
+        { col_domain: 'snowflake.com', col_company: 'Snowflake' },
+        { col_domain: 'vercel.com', col_company: 'Vercel' },
+      ];
+      for (const s of samples) {
+        await api.addRow(workbookId, s);
+      }
+      const rowData = await api.getRows(workbookId, 0, 1000);
+      setRows(rowData.rows || []);
+    } catch (err) {
+      alert(`Failed to add sample leads: ${err.message}`);
     }
   };
 
@@ -318,6 +336,10 @@ export default function EditorPage({ workbookId, onBack }) {
             <Download size={13} />
             <span>Export CSV</span>
           </a>
+          <button className="btn btn-secondary btn-sm" onClick={handleAddSampleLeads} title="Preload demo enterprise companies">
+            <Sparkles size={13} style={{ color: '#a78bfa' }} />
+            <span>Sample Leads</span>
+          </button>
           <button className="btn btn-secondary btn-sm" onClick={handleAddRow}>
             <Plus size={13} />
             <span>Add Row</span>
@@ -503,7 +525,13 @@ export default function EditorPage({ workbookId, onBack }) {
                           });
                         }}
                         onClick={() => {
-                          if (!isLeadField && enrichmentMeta) {
+                          if (isLeadField) {
+                            setEditingCell({
+                              rowId: row.id,
+                              colId: col.id,
+                              value: cellVal || '',
+                            });
+                          } else if (enrichmentMeta) {
                             setActiveDrawerCell({
                               column: col,
                               row: row,

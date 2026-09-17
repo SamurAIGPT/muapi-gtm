@@ -65,11 +65,26 @@ async def execute_cell(
         # 3. Live Muapi Enrichment / Waterfall / Research
         endpoint = config.get("endpoint") or col_type
 
+        # Guard against blank/missing domain inputs
+        needs_domain = endpoint in (
+            "company-enrich", "firmographics", "company-technographics", "technographics",
+            "company-buying-signals", "buying_signals", "company-products", "company-funding",
+            "funding", "company-job-postings", "hiring", "company-headcount-growth",
+            "linkedin-company-profile", "linkedin-employees"
+        )
+        if needs_domain:
+            domain = resolve_input("domain", "domain").strip()
+            if not domain or len(domain) < 3:
+                return {
+                    "value": "—",
+                    "status": "idle",
+                    "latency_ms": 0,
+                    "error": None
+                }
+
         # 3.1 Company Firmographics
         if endpoint in ("company-enrich", "firmographics"):
             domain = resolve_input("domain", "domain")
-            if not domain:
-                raise ValueError("Missing company domain in row data")
             data = await muapi_client.enrich_company(domain)
             display_field = config.get("extract_field", "name")
             val = data.get(display_field) or (f"{data.get('name')} • {data.get('industry')} • {data.get('employee_count')} emp")
