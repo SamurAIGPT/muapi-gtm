@@ -1,0 +1,29 @@
+{
+  "name": "muapi-gtm",
+  "version": "1.0.0",
+  "description": "Self-Hosted GTM Data Engine & Clay Alternative powered by Muapi APIs",
+  "scripts": {
+    "dev": "concurrently -n \"backend,frontend\" -c \"green,cyan\" \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "python -m uvicorn backend.main:app --host 127.0.0.1 --port 3960 --reload",
+    "start:backend": "python backend/main.py",
+    "dev:frontend": "npm run --prefix frontend dev",
+    "build:frontend": "npm run --prefix frontend build",
+    "install:all": "npm install && npm install --prefix frontend"
+  },
+  "keywords": [
+    "gtm",
+    "clay-alternative",
+    "data-engine",
+    "enrichment",
+    "firmographics",
+    "technographics",
+    "buying-signals",
+    "multimodal-outreach",
+    "muapi"
+  ],
+  "author": "Muapi",
+  "license": "MIT",
+  "devDependencies": {
+    "concurrently": "^9.1.2"
+  }
+}
